@@ -1,8 +1,8 @@
 <html lang="en">
 <body>
 <?php
-    $name = $_GET["name"];
-    $birthdateParam = $_GET["dob"];
+    $name = $_POST["name"];
+    $birthdateParam = $_POST["dob"];
     $birthdate = new DateTime($birthdateParam);
     $now = new DateTime();
     $age = ($now->diff($birthdate))->y;
