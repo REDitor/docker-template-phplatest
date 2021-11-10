@@ -7,20 +7,17 @@ error_reporting(E_ALL);
 
 $name = $birthdateParam = $age = "";
 
-if (empty($_POST["name"]))
-    echo "Name is required...";
-else
-    $name = $_POST["name"];
-if (empty($_POST["dob"]))
-    echo "Select a birth date...";
+if (empty($_POST["name"]) || empty($_POST["dob"]))
+    echo "Please fill out all fields...";
 else {
+    $name = $_POST["name"];
     $birthdateParam = $_POST["dob"];
     $birthdate = new DateTime($birthdateParam);
     $now = new DateTime();
     $age = ($now->diff($birthdate))->y;
-}
 
-echo "Hello $name, you are $age years old";
+    echo "Hello $name, you are $age years old";
+}
 ?>
 </body>
 </html>
