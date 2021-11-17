@@ -10,6 +10,19 @@ try {
 
 $sql = "SELECT * FROM posts";
 $result = $connection->query($sql);
+
+//function checkPost(){
+//    $name = $message = "";
+//
+//    if (empty($_POST["name"] || empty($_POST["message"])))
+//        echo "Please fill out all the fields";
+//
+//    if (isset($_POST["name"]) && isset($_POST["message"])){
+//        $name = $_POST["name"];
+//        $message = $_POST["message"];
+//        $ip = $_SERVER['REMOTE_ADDR'];
+//    }
+//}
 ?>
 
 <!doctype html>
@@ -28,7 +41,7 @@ $result = $connection->query($sql);
 <section id="main-container">
     <section id="form-container">
         <h1>Write something in our guestbook!</h1>
-        <form method="POST">
+        <form action="" method="POST">
             <fieldset class="form-field">
                 <label>Name:</label>
                 <input type="text" name="name">
@@ -48,10 +61,11 @@ $result = $connection->query($sql);
         <h1>Guestbook</h1>
         <?php
         foreach ($result as $post) {
+
             ?>
             <section class="post">
                 <h2 class="post-name"><?php echo $post['name'] ?></h2>
-                <p><?php echo $post['message'] ?></p>
+                <p><?php echo nl2br($post['message']) ?></p>
                 <p class="post-footer"><?php echo "posted at " . $post['posted_at'] . " from" . $post['ip_address'] ?></p>
             </section>
             <?php
