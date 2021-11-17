@@ -6,6 +6,18 @@
 
 .form-field {
     border: none;
+    padding: 5px 0 10px 0;
+}
+
+.form-field label {
+    width: 100px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.form-field textarea {
+    width: 50%;
+    height: 100px;
 }
 
 #posts-container {
