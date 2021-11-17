@@ -4,22 +4,13 @@ require_once("dbconfig.php");
 try {
     $connection = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//    echo "Connected successfully";
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 
 $sql = "SELECT * FROM posts";
 $result = $connection->query($sql);
-
-//foreach ($result as $row) {
-//    echo $row['id'];
-//    echo $row['name'];
-//    echo $row['message'];
-//    echo $row['ip_address'];
-//    echo $row['posted_at'];
-//}
-//?>
+?>
 
 <!doctype html>
 <head>
