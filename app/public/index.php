@@ -1,12 +1,5 @@
 <?php
-require_once("../dbconfig.php");
-
-try {
-    $connection = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
+include("../dbconnection.php");
 
 $sql = "SELECT * FROM posts";
 $result = $connection->query($sql);
@@ -25,6 +18,11 @@ $result = $connection->query($sql);
 </head>
 
 <body>
+<header>
+    <nav>
+        <a href="management.php">Manage Posts</a>
+    </nav>
+</header>
 <section id="main-container">
     <section id="form-container">
         <h1>Write something in our guestbook!</h1>
@@ -32,21 +30,26 @@ $result = $connection->query($sql);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $connection->prepare("INSERT INTO posts (posted_at, name, message, ip_address)
                                                             VALUES (now(), :name, :message, :ip_address)");
-            $stmt->bindParam(':name', $_POST['name']);
-            $stmt->bindParam(':message', $_POST['message']);
+
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $name = $_POST['name'];
+            $message = $_POST['message'];
+
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':message', $message);
             $stmt->bindParam(':ip_address', $_SERVER['REMOTE_ADDR']);
 
             $stmt->execute();
         }
         ?>
-        <form action="index.php" method="POST">
+        <form method="POST">
             <fieldset class="form-field">
                 <label>Name:</label>
-                <input type="text" name="name">
+                <input placeholder="Enter your name..." type="text" name="name">
             </fieldset>
             <fieldset class="form-field">
                 <label>Message:</label>
-                <textarea name="message"></textarea>
+                <textarea placeholder="Enter a message.." name="message"></textarea>
             </fieldset>
             <fieldset class="form-field">
                 <label>&nbsp;</label>
