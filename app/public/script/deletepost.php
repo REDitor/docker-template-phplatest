@@ -1,14 +1,17 @@
 <?php
-include_once("../../dbconnection.php");
+require_once("../../dbconnection.php");
 
 try {
-    $id = $_GET['id'];
-    $sql = "DELETE FROM posts WHERE id =' :id '";
-    $stmt = $connection->prepare($sql);
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-} catch (PDOException $e) {
-    echo $sql . "" . $e->getMessage();
-}
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        $sql = "DELETE FROM posts WHERE id =':id'";
 
-//include_once("../management.php");
+        if ($stmt = $connection->prepare($sql)) {
+            $stmt->bindParam(':id', $id);
+            $id = $_GET['id'];
+            $stmt->execute();
+            header("location: management.php");
+        }
+    }
+} catch (PDOException $e) {
+    echo $sql . " " . $e->getMessage();
+}

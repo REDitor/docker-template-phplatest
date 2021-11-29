@@ -14,13 +14,13 @@ $result = $connection->query($sql);
     <style>
         <?php include '../css/style.css'; ?>
     </style>
-    <title>Guestbook</title>
+    <title>Guestbook | Home</title>
 </head>
 
 <body>
 <header>
     <nav>
-        <a href="management.php">Manage Posts</a>
+        <a href="login.php">Manage Posts</a>
     </nav>
 </header>
 <section id="main-container">

@@ -12,7 +12,10 @@ $result = $connection->query($sql);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Management</title>
+    <style>
+        <?php include '../css/style.css'; ?>
+    </style>
+    <title>Guestbook | Management</title>
 </head>
 <body>
 <header>
@@ -20,7 +23,7 @@ $result = $connection->query($sql);
         <a href="index.php">Home</a>
     </nav>
 </header>
-<section>
+<section id="main-container">
     <h2>Posts</h2>
     <table>
         <tr>
@@ -42,7 +45,16 @@ $result = $connection->query($sql);
                 <td><?php echo nl2br($post['message']) ?></td>
                 <td><?php echo $post['posted_at'] ?></td>
                 <td><?php echo $post['ip_address'] ?></td>
-                <td class="delete">
+                <td class="editPost">
+                    <a href="script/editpost.php?id=<?php $post['id'] ?>
+                                                 &name=<?php $post['name'] ?>
+                                                 &email=<?php $post['email'] ?>
+                                                 &message=<?php $post['message'] ?>
+                                                 &posted_at=<?php $post['posted_at'] ?>
+                                                 &ip_address=<?php $post['ip_address'] ?>
+                    ">Edit</a>
+                </td>
+                <td class="deletePost">
                     <a href="script/deletepost.php?id=<?php echo $post['id']; ?>">Delete</a>
                 </td>
             </tr>
