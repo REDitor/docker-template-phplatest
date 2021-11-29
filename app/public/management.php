@@ -45,17 +45,17 @@ $result = $connection->query($sql);
                 <td><?php echo nl2br($post['message']) ?></td>
                 <td><?php echo $post['posted_at'] ?></td>
                 <td><?php echo $post['ip_address'] ?></td>
-                <td class="editPost">
+                <td>
                     <a href="script/editpost.php?id=<?php $post['id'] ?>
                                                  &name=<?php $post['name'] ?>
                                                  &email=<?php $post['email'] ?>
                                                  &message=<?php $post['message'] ?>
                                                  &posted_at=<?php $post['posted_at'] ?>
                                                  &ip_address=<?php $post['ip_address'] ?>
-                    ">Edit</a>
+                    " class="button editPost">Edit</a>
                 </td>
-                <td class="deletePost">
-                    <a href="script/deletepost.php?id=<?php echo $post['id']; ?>">Delete</a>
+                <td>
+                    <a href="script/deletepost.php?id=<?php echo $post['id']; ?>" class="button deletePost">Delete</a>
                 </td>
             </tr>
             <?php

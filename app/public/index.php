@@ -40,8 +40,7 @@ $result = $connection->query($sql);
             $stmt->bindParam(':ip_address', $_SERVER['REMOTE_ADDR']);
 
             $stmt->execute();
-        }
-        ?>
+        } ?>
         <form method="POST">
             <fieldset class="form-field">
                 <label>Name:</label>
