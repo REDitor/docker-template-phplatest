@@ -1,12 +1,14 @@
 <?php
 include_once("../../dbconnection.php");
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+try {
     $id = $_GET['id'];
-    $stmt = $connection->prepare("DELETE FROM posts WHERE id = $id");
+    $sql = "DELETE FROM posts WHERE id =' :id '";
+    $stmt = $connection->prepare($sql);
     $stmt->bindParam(':id', $id);
     $stmt->execute();
+} catch (PDOException $e) {
+    echo $sql . "" . $e->getMessage();
 }
 
 //include_once("../management.php");

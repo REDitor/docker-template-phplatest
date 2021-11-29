@@ -39,13 +39,11 @@ $result = $connection->query($sql);
                 <td><?php echo $post['id'] ?></td>
                 <td><?php echo $post['name'] ?></td>
                 <td><?php echo $post['email'] ?></td>
-                <td><?php echo $post['message'] ?></td>
+                <td><?php echo nl2br($post['message']) ?></td>
                 <td><?php echo $post['posted_at'] ?></td>
                 <td><?php echo $post['ip_address'] ?></td>
                 <td class="delete">
-                    <form method="GET">
-                        <input type="submit" name="id" value="Delete"><a href="script/deletepost.php?id=30"></a>
-                    </form>
+                    <a href="script/deletepost.php?id=<?php echo $post['id']; ?>">Delete</a>
                 </td>
             </tr>
             <?php
