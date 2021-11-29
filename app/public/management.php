@@ -35,21 +35,20 @@ $result = $connection->query($sql);
 
         foreach ($result as $post) {
             ?>
-        <tr>
-            <td><?php echo $post['id'] ?></td>
-            <td><?php echo $post['name'] ?></td>
-            <td><?php echo $post['email'] ?></td>
-            <td><?php echo $post['message'] ?></td>
-            <td><?php echo $post['posted_at'] ?></td>
-            <td><?php echo $post['ip_address'] ?></td>
-            <td class="delete">
-                <form action="script/deletepost.php?post="<?php $post['id']; ?> method="post">
-                    <input type="hidden" name="post" value="<?php echo $post['id']; ?>">
-                    <input type="submit" name="submit" value="Delete">
-                </form>
-            </td>
-        </tr>
-        <?php
+            <tr>
+                <td><?php echo $post['id'] ?></td>
+                <td><?php echo $post['name'] ?></td>
+                <td><?php echo $post['email'] ?></td>
+                <td><?php echo $post['message'] ?></td>
+                <td><?php echo $post['posted_at'] ?></td>
+                <td><?php echo $post['ip_address'] ?></td>
+                <td class="delete">
+                    <form method="GET">
+                        <input type="submit" name="id" value="Delete"><a href="script/deletepost.php?id=30"></a>
+                    </form>
+                </td>
+            </tr>
+            <?php
         } ?>
     </table>
 </section>

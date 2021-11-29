@@ -1,11 +1,12 @@
 <?php
-include("../../dbconnection.php");
+include_once("../../dbconnection.php");
 
-$stmt = $connection->prepare("DELETE FROM posts WHERE id = :id");
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-$id = $_POST['id'];
+    $id = $_GET['id'];
+    $stmt = $connection->prepare("DELETE FROM posts WHERE id = $id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+}
 
-$stmt->bindParam(':id', $id);
-$stmt->execute();
-
-include ('../management.php');
+//include_once("../management.php");
