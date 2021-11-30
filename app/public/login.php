@@ -1,75 +1,39 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-    header("location: management.php")
-//try {
-//    //start session
-//    session_start();
-//
-//    //check if user is logged in already
-//    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-//        header("location: ../management.php");
-//        exit;
-//    }
-//
-//    //include db connection
-//    require_once('../dbconnection.php');
-//
-//    //need these later
-//    $username = $password = "";
-//    $username_err = $password_err = $login_err = "";
-//
-//    //process form upon submit
-//    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-//        if (empty(trim($_POST["username"]))) {
-//            $username_err = "Please enter username.";
-//        } else {
-//            $username = trim($_POST["username"]);
-//        }
-//
-//        if (empty(trim($_POST["password"]))) {
-//            $password_err = "Please enter your password.";
-//        } else {
-//            $password = trim($_POST["password"]);
-//        }
-//
-//        //validate credentials
-//        if (empty($username_err) && empty($password_err)) {
-//            $sql = "SELECT id, username, password FROM users WHERE username = ?";
-//
-//            if ($stmt = $connection->prepare($sql)) {
-//                $stmt->bindParam("s", $param_username);
-//
-//                $param_username = trim($_POST["username"]);
-//
-//                if ($stmt->execute()) {
-//                    if ($stmt->rowCount() == 1) {
-//                        if ($row = $stmt->fetch()) {
-//                            $id = $row['id'];
-//                            $username = $row['username'];
-//                            $password = $row['password'];
-//
-//                            session_start();
-//
-//                            $_SESSION['loggedin'] = true;
-//                            $_SESSION['id'] = $id;
-//                            $_SESSION['username'] = $username;
-//
-//                            header("location: management.php");
-//                        } else {
-//                            $login_err = "Invalid username or password";
-//                        }
-//                    } else {
-//                        echo "Something went wrong, please try again later";
-//                    }
-//
-//                    unset($stmt);
-//                }
-//            }
-//        }
-//    }
-//} catch (PDOException $e) {
-//    echo $e->getMessage();
-//}
+session_start();
+include("../dbconnection.php");
+
+if ($_SESSION['loggedin'] == true)
+    header("Location: management.php");
+
+else if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (!isset($_POST['username'], $_POST['password'])) {
+        exit("Something went wrong, have you entered both username and password?");
+    } else {
+        $sql = "SELECT id, username, password 
+            FROM users 
+            WHERE username=:username
+            AND password=:password";
+
+        if ($stmt = $connection->prepare($sql)) {
+            $stmt->bindparam(':username', $_POST['username']);
+            $stmt->bindparam(':password', $_POST['password']);
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                session_regenerate_id();
+
+                $_SESSION['loggedin'] = true;
+                $_SESSION['name'] = $_POST['username'];
+
+                header("Location: management.php");
+                exit();
+                //user will stay logged in to easily switch between pages (and for potential logout feature)
+            }
+        } else
+            echo "Incorrect credentials";
+    }
+}
 ?>
 
 <!doctype html>
@@ -85,8 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <title>Guestbook | Login</title>
 </head>
 <body>
-<section id="main-container">
+<section class="main-container">
     <form method="POST">
+        <h2>Login</h2>
         <fieldset class="form-field">
             <label>Username:</label>
             <input placeholder="Enter your username..." type="text" name="username">

@@ -23,7 +23,7 @@ $result = $connection->query($sql);
         <a href="login.php">Manage Posts</a>
     </nav>
 </header>
-<section id="main-container">
+<section class="main-container">
     <section id="form-container">
         <h1>Write something in our guestbook!</h1>
         <?php

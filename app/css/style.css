@@ -1,4 +1,4 @@
-#main-container {
+.main-container {
     width: 80%;
     margin: 0 auto;
     font-family: sans-serif;
@@ -50,4 +50,21 @@ h1 {
 
 .deletePost {
     background-color: #d25757;
+}
+
+table, h2 {
+    margin: auto;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    padding: 3px 10px 3px 10px;
+}
+
+td textarea {
+    box-sizing: border-box;
+    height: auto;
 }

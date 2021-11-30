@@ -1,6 +1,6 @@
 <?php
 // database configuration
 $servername = "mysql";
-$username = "root";
-$password = "secret123";
+$dbusername = "root";
+$dbpassword = "secret123";
 $databasename = "guestbook";

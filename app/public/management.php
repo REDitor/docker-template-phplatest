@@ -23,7 +23,7 @@ $result = $connection->query($sql);
         <a href="index.php">Home</a>
     </nav>
 </header>
-<section id="main-container">
+<section class="main-container">
     <h2>Posts</h2>
     <table>
         <tr>
@@ -42,20 +42,24 @@ $result = $connection->query($sql);
                 <td><?php echo $post['id'] ?></td>
                 <td><?php echo $post['name'] ?></td>
                 <td><?php echo $post['email'] ?></td>
-                <td><?php echo nl2br($post['message']) ?></td>
+                <td><textarea name="message"><?php echo $post['message']; ?></textarea></td>
                 <td><?php echo $post['posted_at'] ?></td>
                 <td><?php echo $post['ip_address'] ?></td>
                 <td>
-                    <a href="script/editpost.php?id=<?php $post['id'] ?>
-                                                 &name=<?php $post['name'] ?>
-                                                 &email=<?php $post['email'] ?>
-                                                 &message=<?php $post['message'] ?>
-                                                 &posted_at=<?php $post['posted_at'] ?>
-                                                 &ip_address=<?php $post['ip_address'] ?>
-                    " class="button editPost">Edit</a>
+                    <form action="script/editpost.php?id=<?php $post['id']; ?>
+                                                 &name=<?php $post['name']; ?>
+                                                 &email=<?php $post['email']; ?>
+                                                 &message=message
+                                                 &posted_at=<?php $post['posted_at']; ?>
+                                                 &ip_address=<?php $post['ip_address']; ?>"
+                          method="post">
+                        <input class="button editPost" type="submit" name="submit" value="Confirm Edit">
+                    </form>
                 </td>
                 <td>
-                    <a href="script/deletepost.php?id=<?php echo $post['id']; ?>" class="button deletePost">Delete</a>
+                    <form action="script/deletepost.php?id=<?php echo $post['id']; ?>" method="get">
+                        <input class="button deletePost" type="submit" name="submit" value="Delete">
+                    </form>
                 </td>
             </tr>
             <?php
