@@ -2,10 +2,7 @@
 session_start();
 include("../dbconnection.php");
 
-if ($_SESSION['loggedin'] == true)
-    header("Location: management.php");
-
-else if ($_SERVER['REQUEST_METHOD'] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!isset($_POST['username'], $_POST['password'])) {
         exit("Something went wrong, have you entered both username and password?");
     } else {
@@ -32,6 +29,7 @@ else if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         } else
             echo "Incorrect credentials";
+        header("Location: index.php");
     }
 }
 ?>

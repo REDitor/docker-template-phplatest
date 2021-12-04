@@ -3,8 +3,6 @@ include("../dbconnection.php");
 
 $sql = "SELECT * FROM posts";
 $result = $connection->query($sql);
-
-session_start();
 ?>
 
 <!doctype html>
