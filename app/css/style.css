@@ -37,34 +37,10 @@ h1 {
 }
 
 /* Management */
-.button {
-    font: bold 14px Arial;
-    text-decoration: none;
-    color:  #fff;
-    padding: 2px 6px 2px 6px;
-}
-
-.editPost {
-    background-color: #3a3aab;
-}
-
-.deletePost {
-    background-color: #d25757;
-}
-
-table, h2 {
-    margin: auto;
-}
-
 th {
     text-align: left;
 }
 
 td {
     padding: 3px 10px 3px 10px;
-}
-
-td textarea {
-    box-sizing: border-box;
-    height: auto;
 }

@@ -2,9 +2,9 @@
 require_once("../../dbconnection.php");
 
 try {
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql = "DELETE FROM posts WHERE id = :id";
-        $id = $_GET['id'];
+        $id = $_POST['id'];
 
         if ($stmt = $connection->prepare($sql)) {
             $stmt->bindParam(':id', $id);

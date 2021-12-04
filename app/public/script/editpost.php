@@ -3,21 +3,22 @@ require_once ('../../dbconnection.php');
 
 
 
-if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $id = $_GET['id'];
-    $name = $_GET['name'];
-    $email = $_GET['email'];
-    $message = $_GET['message'];
-    $posted_at = $_GET['posted_at'];
-    $ip_address = $_GET['ip_address'];
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
 
     $sql = "UPDATE posts
-            SET message = :message
+            SET name = :name, email = :email, message = :message
             WHERE id = :id";
 
     if ($stmt = $connection->prepare($sql)) {
-        $stmt->bindparam(':message', $message);
         $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindparam(':message', $message);
+
         $stmt->execute();
         header("Location: ../management.php");
     }

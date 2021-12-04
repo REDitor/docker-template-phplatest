@@ -39,28 +39,20 @@ $result = $connection->query($sql);
         foreach ($result as $post) {
             ?>
             <tr>
-                <td><?php echo $post['id'] ?></td>
-                <td><?php echo $post['name'] ?></td>
-                <td><?php echo $post['email'] ?></td>
-                <td><textarea name="message"><?php echo $post['message']; ?></textarea></td>
-                <td><?php echo $post['posted_at'] ?></td>
-                <td><?php echo $post['ip_address'] ?></td>
-                <td>
-                    <form action="script/editpost.php?id=<?php $post['id']; ?>
-                                                 &name=<?php $post['name']; ?>
-                                                 &email=<?php $post['email']; ?>
-                                                 &message=message
-                                                 &posted_at=<?php $post['posted_at']; ?>
-                                                 &ip_address=<?php $post['ip_address']; ?>"
-                          method="post">
-                        <input class="button editPost" type="submit" name="submit" value="Confirm Edit">
-                    </form>
-                </td>
-                <td>
-                    <form action="script/deletepost.php?id=<?php echo $post['id']; ?>" method="get">
-                        <input class="button deletePost" type="submit" name="submit" value="Delete">
-                    </form>
-                </td>
+                <form method="post">
+                    <td><input type="hidden" name="id" value="<?php echo $post['id'] ?>"><?php echo $post['id'] ?></td>
+                    <td><input type="text" name="name" value="<?php echo $post['name'] ?>"></td>
+                    <td><input type="email" name="email" value="<?php echo $post['email'] ?>"></td>
+                    <td><textarea name="message"><?php echo $post['message'] ?></textarea></td>
+                    <td><?php echo $post['posted_at'] ?></td>
+                    <td><?php echo $post['ip_address'] ?></td>
+                    <td>
+                        <button formaction="script/editpost.php">Confirm Edit</button>
+                    </td>
+                    <td>
+                        <button formaction="script/deletepost.php">Delete</button>
+                    </td>
+                </form>
             </tr>
             <?php
         } ?>
