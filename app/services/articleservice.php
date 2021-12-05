@@ -1,5 +1,5 @@
 <?php
-
+require __DIR__ . '/../DAL/articledao.php';
 class ArticleService
 {
     public function getAll() {

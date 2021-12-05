@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '../../controllers/articlecontroller.php';
+require __DIR__ . '/../../controllers/articlecontroller.php';
 ?>
 
 <!doctype html>

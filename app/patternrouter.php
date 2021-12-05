@@ -19,7 +19,7 @@ class PatternRouter {
         if (!isset($explodeUri[0]) || empty($explodeUri[0])) { //if no first param provided set it to 'home'
             $explodeUri[0] = $defaultcontroller;
         }
-        $controllerName = $explodeUri[0]; //store the first param for later use in controller object
+        $controllerName = $explodeUri[0] . "controller"; //store the first param for later use in controller object
 
         if (!isset($explodeUri[1]) || empty($explodeUri[1])) { //if no second param provided set it to 'index'
             $explodeUri[1] = $defaultmethod;

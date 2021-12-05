@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../services/articleservice.php';
 
 class ArticleController {
 
@@ -11,6 +12,6 @@ class ArticleController {
 
     public function index() {
         $articles = $this->articleService->getAll();
-        header("Location: views/index.php");
+        require __DIR__ . '/../views/article/index.php';
     }
 }

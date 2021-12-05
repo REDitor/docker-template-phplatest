@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . 'base.php';
-require __DIR__ . '../models/article.php';
+require __DIR__ . '/base.php';
+require __DIR__ . '/../models/article.php';
 
 class ArticleDAO extends Base
 {

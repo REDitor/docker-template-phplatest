@@ -6,7 +6,7 @@ class Base
 
     public function __construct()
     {
-        require __DIR__ . '../dbconfig.php';
+        require __DIR__ . '/../dbconfig.php';
 
         try {
             $this->connection = new PDO("mysql:host=$servername;dbname=$databasename", $dbusername, $dbpassword);
@@ -15,6 +15,4 @@ class Base
             echo "Connection failed: " .$e->getMessage();
         }
     }
-
-
 }
