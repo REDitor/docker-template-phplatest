@@ -1,7 +1,6 @@
 <?php
 
-class HomeController
-{
+class HomeController {
     public function index() {
         echo "You've reached the index method of the home controller";
     }
