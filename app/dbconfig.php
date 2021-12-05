@@ -3,4 +3,4 @@
 $servername = "mysql";
 $dbusername = "root";
 $dbpassword = "secret123";
-$databasename = "guestbook";
+$databasename = "articleblog";

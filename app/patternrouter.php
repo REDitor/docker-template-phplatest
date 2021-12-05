@@ -10,16 +10,19 @@ class PatternRouter {
     }
 
     public function route($uri) {
+        $defaultcontroller = 'home';
+        $defaultmethod = 'index';
+
         $uri = $this->stripParameters($uri); //gets the string after the ?
         $explodeUri = explode('/', $uri); //splits the string at /
 
         if (!isset($explodeUri[0]) || empty($explodeUri[0])) { //if no first param provided set it to 'home'
-            $explodeUri[0] = 'home';
+            $explodeUri[0] = $defaultcontroller;
         }
         $controllerName = $explodeUri[0]; //store the first param for later use in controller object
 
         if (!isset($explodeUri[1]) || empty($explodeUri[1])) { //if no second param provided set it to 'index'
-            $explodeUri[1] = 'index';
+            $explodeUri[1] = $defaultmethod;
         }
         $methodName = $explodeUri[1]; //store second param for later use in controller object
 
